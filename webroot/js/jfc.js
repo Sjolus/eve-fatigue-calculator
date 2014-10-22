@@ -1,44 +1,101 @@
 // ---------------------------------------------------------------
 
-var jdc = 0;
+var selectTravel = 1;
+var selectShip = 4;
+var selectShipCovert = 1;
+var selectJdc = 5;
+
 var baserange = 0;
+var jdc = 0;
 var modifier = 0;
 
 // ---------------------------------------------------------------
 
 $(document).ready(function() {
-    $('#init-1').click();
-    $('#init-2').click();
+    readjust();
 });
 
 // ---------------------------------------------------------------
 
-function shipChange(obj, range, fat) {
-    $("#option-ships button").each(function( index ) {
+function readjust() {
+    $("#option-jdc").addClass('hide');
+    $("#option-ship").addClass('hide');
+    $("#option-ship-covert").addClass('hide');
+
+    $("#option-travel button").each(function( index ) {
         $(this).removeClass('btn-primary');
         $(this).addClass('btn-default');
     });
+    $("#option-travel-" + selectTravel).addClass('btn-primary');
 
-    $(obj).removeClass('btn-default');
-    $(obj).addClass('btn-primary');
+    $("#option-ship button").each(function( index ) {
+        $(this).removeClass('btn-primary');
+        $(this).addClass('btn-default');
+    });
+    $("#option-ship-" + selectShip).addClass('btn-primary');
 
-    baserange = range;
-    modifier = fat;
+    $("#option-ship-covert button").each(function( index ) {
+        $(this).removeClass('btn-primary');
+        $(this).addClass('btn-default');
+    });
+    $("#option-ship-covert-" + selectShipCovert).addClass('btn-primary');
 
-    recalc();
-}
-
-function jdcChange(obj, lvl) {
     $("#option-jdc button").each(function( index ) {
         $(this).removeClass('btn-primary');
         $(this).addClass('btn-default');
     });
+    $("#option-jdc-" + selectJdc).addClass('btn-primary');
 
-    $(obj).removeClass('btn-default');
-    $(obj).addClass('btn-primary');
 
-    jdc = lvl;
+    if (selectTravel == 1) {
+	$("#option-ship").removeClass('hide');
 
+	baserange = 5;
+	jdc = 0;
+	modifier = 0;
+
+	if (selectShip == 1) modifier = 0.5;
+	if (selectShip == 2) modifier = 0.9;
+	if (selectShip == 3) modifier = 0.9;
+    }
+
+    if (selectTravel == 2) {
+	$("#option-ship").removeClass('hide');
+	$("#option-jdc").removeClass('hide');
+
+	jdc = selectJdc;
+	switch(selectShip) {
+	case 1:
+	    baserange = 4.0;
+	    modifier = 0.5;
+	    break;
+	case 2:
+	    baserange = 5.0;
+	    modifier = 0.9;
+	    break;
+	case 3:
+	    baserange = 2.5;
+	    modifier = 0.9;
+	    break;
+	case 4:
+	    baserange = 2.5;
+	    modifier = 0.0;
+	    break;
+	} 
+    }
+
+    if (selectTravel == 3) {
+	$("#option-ship-covert").removeClass('hide');
+	$("#option-jdc").removeClass('hide');
+
+	baserange = 4.0;
+	jdc = selectJdc;
+
+	if (selectShipCovert == 1) modifier = 0.5;
+	if (selectShipCovert == 2) modifier = 0.95;
+    }
+
+    $('#fatigue-bonus').html((modifier * 100) + "%");
     recalc();
 }
 

@@ -37,23 +37,46 @@
 <!-- Content -->
     <div class="container">
 
-	<span id="option-ships">
-	    <button id="init-1" class="btn btn-default" onclick="shipChange(this, 2.5, 0.0);"><b>Carrier / Dread / Titan / Jumpbridge</b></button>
-	    <button class="btn btn-default" onclick="shipChange(this, 5, 0.9);"><b>Industrial / JF / BR / DST / ICS / Freighter</b></button>
-	    <button class="btn btn-default" onclick="shipChange(this, 2.5, 0.9);"><b>Rorqual</b></button>
-	    <button class="btn btn-default" onclick="shipChange(this, 4, 0.5);"><b>BLOPS</b></button>
+	<span id="option-travel" style="font-size:160%;">
+	    <label>I travel by </label>
+	    <button id="option-travel-1" class="btn btn-default btn-sm" onclick="selectTravel = 1; readjust();"><b>using a Jumpbridge</b></button>
+	    <button id="option-travel-2" class="btn btn-default btn-sm" onclick="selectTravel = 2; readjust();"><b>jumping to a Cyno / being bridged by a Titan</b></button>
+	    <button id="option-travel-3" class="btn btn-default btn-sm" onclick="selectTravel = 3; readjust();"><b>jumping to a Covert Cyno / being bridged by a Black Ops</b></button>
 	</span>
 
-	<span id="option-jdc" class="pull-right">
-	    <button class="btn btn-default" onclick="jdcChange(this, 1);"><b>JDC I</b></button>
-	    <button class="btn btn-default" onclick="jdcChange(this, 2);"><b>JDC II</b></button>
-	    <button class="btn btn-default" onclick="jdcChange(this, 3);"><b>JDC III</b></button>
-	    <button class="btn btn-default" onclick="jdcChange(this, 4);"><b>JDC IV</b></button>
-	    <button id="init-2"  class="btn btn-default" onclick="jdcChange(this, 5);"><b>JDC V</b></button>
+<br>
+
+	<span id="option-ship-covert" style="font-size:160%;" class="hide">
+	    <label>I am in a </label>
+	    <button id="option-ship-covert-1" class="btn btn-default btn-sm" onclick="selectShipCovert = 1; readjust();"><b>Black Ops, Covert Ops, Force Recon</b></button>
+	    <button id="option-ship-covert-2" class="btn btn-default btn-sm" onclick="selectShipCovert = 2; readjust();"><b>Blockade Runner</b></button>
+	</span>
+
+	<span id="option-ship" style="font-size:160%;" class="hide">
+	    <label>I am in a </label>
+	    <button id="option-ship-1" class="btn btn-default btn-sm" onclick="selectShip = 1; readjust();"><b>Black Ops</b></button>
+	    <button id="option-ship-2" class="btn btn-default btn-sm" onclick="selectShip = 2; readjust();"><b>Jumpfreighter</b></button>
+	    <button id="option-ship-3" class="btn btn-default btn-sm" onclick="selectShip = 3; readjust();"><b>Standard-, Avanced-, Capital-Industrial, Freighter</b></button>
+	    <button id="option-ship-4" class="btn btn-default btn-sm" onclick="selectShip = 4; readjust();"><b>Something else</b></button>
+	</span>
+
+<br>
+
+	<span id="option-jdc" style="font-size:160%;" class="hide">
+	    <label>I or the bridging pilot have </label>
+	    <button id="option-jdc-1" class="btn btn-default btn-sm" onclick="selectJdc = 1; readjust();"><b>JDC I</b></button>
+	    <button id="option-jdc-2" class="btn btn-default btn-sm" onclick="selectJdc = 2; readjust();"><b>JDC II</b></button>
+	    <button id="option-jdc-3" class="btn btn-default btn-sm" onclick="selectJdc = 3; readjust();"><b>JDC III</b></button>
+	    <button id="option-jdc-4" class="btn btn-default btn-sm" onclick="selectJdc = 4; readjust();"><b>JDC IV</b></button>
+	    <button id="option-jdc-5" class="btn btn-default btn-sm" onclick="selectJdc = 5; readjust();"><b>JDC V</b></button>
 	</span>
 
 	<hr>
-	    <span class="pull-right">
+
+	<span class="pull-left">
+	    Fatigue Bonus: <b id="fatigue-bonus">6nbsp;</b>
+	</span>
+	<span class="pull-right">
 	    Set all distances to 
 	    <button class="btn btn-default btn-xs btn-danger" onclick="resetMin();"><b>MIN</b></button>
 	    <button class="btn btn-default btn-xs btn-danger" onclick="resetMax();"><b>MAX</b></button>
