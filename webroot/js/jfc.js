@@ -197,23 +197,29 @@ function recalc() {
     fatigue = 1 + distance * (1 - modifier);
 
     if ($("#distance-1-input").val() == 0) {
-	$("#result-1-fatigue").html('<span class="text-muted">N/A</span>');
+	$("#result-1-fatigue-after").html('<span class="text-muted">N/A</span>');
+	$("#result-1-fatigue-time").html('<span class="text-muted">N/A</span>');
+	$("#result-1-time").html('<span class="text-muted">N/A</span>');
     } else {
-	$("#result-1-fatigue").html(toTime(fatigue * 10));
+	$("#result-1-fatigue-after").html((fatigue).toFixed(2));
+	$("#result-1-fatigue-time").html("<span class='text-muted'><small>" + toTime(fatigue * 10 - 10) + "</small></span>");
+	$("#result-1-time").html("0m");
     }
 
     hide = false;
 
     for (i=2; i < 10; i++) {
-	wait = refreshInputTime('#wait-' + i, Math.ceil(cooldown), Math.ceil(fatigue / 0.1 - 10));
+	$("#result-" + i + "-cooldown").html(toTime(cooldown));
+	traveltime += cooldown;
+	fatigue -= cooldown / 10;
 
+	wait = refreshInputTime('#wait-' + i, 0, Math.ceil(fatigue / 0.1 - 10));
 	traveltime += wait;
 	fatigue -= wait * 0.1;
+	$("#result-" + i + "-fatigue-before").html((fatigue).toFixed(2));
 
 	distance = refreshInputDistance('#distance-' + i, 0, maxrange);
-
 	cooldown = Math.max(1 + distance * (1 - modifier), fatigue);
-
 	fatigue = Math.max(fatigue, 1) * (1 + distance * (1 - modifier));
 	fatigue = Math.min(fatigue, 60 * 24 * 30 / 10);
 
@@ -228,10 +234,12 @@ function recalc() {
 	}
 
 	if ($("#distance-" + i + "-input").val() == 0) {
-	    $("#result-" + i + "-fatigue").html('<span class="text-muted">N/A</span>');
+	    $("#result-" + i + "-fatigue-after").html('<span class="text-muted">N/A</span>');
 	    $("#result-" + i + "-time").html('<span class="text-muted">N/A</span>');
+	    $("#result-" + i + "-fatigue-time").html('<span class="text-muted">N/A</span>');
 	} else {
-	    $("#result-" + i + "-fatigue").html(toTime(fatigue * 10));
+	    $("#result-" + i + "-fatigue-after").html((fatigue).toFixed(2));
+	    $("#result-" + i + "-fatigue-time").html("<span class='text-muted'><small>" + toTime(fatigue * 10 - 10) + "</small></span>");
 	    $("#result-" + i + "-time").html(toTime(traveltime));
 	}
     }

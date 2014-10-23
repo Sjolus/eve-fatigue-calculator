@@ -37,7 +37,7 @@
 <!-- Content -->
     <div class="container">
 
-	<span id="option-travel" style="font-size:160%;">
+	<span id="option-travel" style="font-size:140%;">
 	    <label>I travel by </label>
 	    <button id="option-travel-1" class="btn btn-default btn-sm" onclick="selectTravel = 1; readjust();"><b>using a Jumpbridge</b></button>
 	    <button id="option-travel-2" class="btn btn-default btn-sm" onclick="selectTravel = 2; readjust();"><b>jumping to a Cyno / being bridged by a Titan</b></button>
@@ -46,13 +46,13 @@
 
 <br>
 
-	<span id="option-ship-covert" style="font-size:160%;" class="hide">
+	<span id="option-ship-covert" style="font-size:140%;" class="hide">
 	    <label>I am in a </label>
 	    <button id="option-ship-covert-1" class="btn btn-default btn-sm" onclick="selectShipCovert = 1; readjust();"><b>Black Ops, Covert Ops, Force Recon</b></button>
 	    <button id="option-ship-covert-2" class="btn btn-default btn-sm" onclick="selectShipCovert = 2; readjust();"><b>Blockade Runner</b></button>
 	</span>
 
-	<span id="option-ship" style="font-size:160%;" class="hide">
+	<span id="option-ship" style="font-size:140%;" class="hide">
 	    <label>I am in a </label>
 	    <button id="option-ship-1" class="btn btn-default btn-sm" onclick="selectShip = 1; readjust();"><b>Black Ops</b></button>
 	    <button id="option-ship-2" class="btn btn-default btn-sm" onclick="selectShip = 2; readjust();"><b>Jumpfreighter</b></button>
@@ -62,7 +62,7 @@
 
 <br>
 
-	<span id="option-jdc" style="font-size:160%;" class="hide">
+	<span id="option-jdc" style="font-size:140%;" class="hide">
 	    <label>I or the bridging pilot have </label>
 	    <button id="option-jdc-1" class="btn btn-default btn-sm" onclick="selectJdc = 1; readjust();"><b>JDC I</b></button>
 	    <button id="option-jdc-2" class="btn btn-default btn-sm" onclick="selectJdc = 2; readjust();"><b>JDC II</b></button>
@@ -88,17 +88,22 @@
 	<table class="table table-hover table-striped">
 	    <thead>
 		<tr>
-		    <th>Jump</th>
-		    <th>Cooldown + Optional Wait Period</th>
-		    <th>Distance</th>
-		    <th class="text-right">Travel Time <span class="text-muted">(sum)</span></th>
-		    <th class="text-right">Remaining Fatigue</th>
+		    <th>Jump<br>&nbsp;</th>
+		    <th class="text-right">Cooldown<br>&nbsp;</th>
+		    <th class="text-center">Wait Period<br><span class="text-muted"><small>(optional)</small></span></th>
+		    <th class="text-right">Fatigue<br><span class="text-muted"><small>(before jump)</small></span></th>
+		    <th class="text-center">Jump Distance<br>&nbsp;</th>
+		    <th class="text-right">Fatigue<br><span class="text-muted"><small>(after jump)</small></span></th>
+		    <th class="text-right">Decay to 1<br>&nbsp;</th>
+		    <th class="text-right">Travel Time<br><span class="text-muted"><small>(sum)</small></span></th>
 		</tr>
 	    </thead>
 	    <tbody>
 		<tr id="row-1">
-		    <td style="vertical-align:middle;"><span style="font-size:160%;">#1</span></td>
-		    <td class="text-center text-muted" style="vertical-align:middle;"><span style="font-size:160%;">N/A</span></td>
+		    <td style="vertical-align:middle;"><span style="font-size:140%;">#1</span></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span style="font-size:140%;" class="text-muted">N/A</span></b></td>
+		    <td class="text-center" style="vertical-align:middle;"><b><span style="font-size:140%;" class="text-muted">N/A</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span style="font-size:140%;">0m</span></b></td>
 		    <td class="text-center">
 			<br>
 			<input id="distance-1-input" style="display: inline;" onchange="recalc();" onkeyup="recalc();" type="range" min="0" max="0" step="0.01">
@@ -106,11 +111,13 @@
 			    <span id="distance-1-value"></span>
 			    <span id="distance-1-max" class="pull-right text-muted"></span>
 		    </td>
-		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-1-time" class="text-muted" style="font-size:160%;">0m</span></b></td>
-		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-1-fatigue" style="font-size:160%;">&nbsp;</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-1-fatigue-after" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-1-fatigue-time" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-1-time" style="font-size:140%;">&nbsp;</span></b></td>
 		</tr>
 		<tr id="row-2">
-		    <td style="vertical-align:middle;"><span style="font-size:160%;">#2</span></td>
+		    <td style="vertical-align:middle;"><span style="font-size:140%;">#2</span></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-2-cooldown" style="font-size:140%;">&nbsp;</span></b></td>
 		    <td class="text-center">
 			<br>
 			<input id="wait-2-input" style="display: inline;" onchange="recalc();" onkeyup="recalc();" type="range" min="0" max="0" step="1">
@@ -118,6 +125,7 @@
 			    <span id="wait-2-value"></span>
 			    <span id="wait-2-max" class="pull-right text-muted"></span>
 		    </td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-2-fatigue-before" style="font-size:140%;">&nbsp;</span></b></td>
 		    <td class="text-center">
 			<br>
 			<input id="distance-2-input" style="display: inline;" onchange="recalc();" onkeyup="recalc();" type="range" min="0" max="0" step="0.01">
@@ -125,11 +133,13 @@
 			    <span id="distance-2-value"></span>
 			    <span id="distance-2-max" class="pull-right text-muted"></span>
 		    </td>
-		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-2-time" style="font-size:160%;">&nbsp;</span></b></td>
-		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-2-fatigue"  style="font-size:160%;">&nbsp;</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-2-fatigue-after" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-2-fatigue-time" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-2-time" style="font-size:140%;">&nbsp;</span></b></td>
 		</tr>
 		<tr id="row-3">
-		    <td style="vertical-align:middle;"><span style="font-size:160%;">#3</span></td>
+		    <td style="vertical-align:middle;"><span style="font-size:140%;">#3</span></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-3-cooldown" style="font-size:140%;">&nbsp;</span></b></td>
 		    <td class="text-center">
 			<br>
 			<input id="wait-3-input" style="display: inline;" onchange="recalc();" onkeyup="recalc();" type="range" min="0" max="0" step="1">
@@ -137,6 +147,7 @@
 			    <span id="wait-3-value"></span>
 			    <span id="wait-3-max" class="pull-right text-muted"></span>
 		    </td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-3-fatigue-before" style="font-size:140%;">&nbsp;</span></b></td>
 		    <td class="text-center">
 			<br>
 			<input id="distance-3-input" style="display: inline;" onchange="recalc();" onkeyup="recalc();" type="range" min="0" max="0" step="0.01">
@@ -144,11 +155,13 @@
 			    <span id="distance-3-value"></span>
 			    <span id="distance-3-max" class="pull-right text-muted"></span>
 		    </td>
-		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-3-time" style="font-size:160%;">&nbsp;</span></b></td>
-		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-3-fatigue" style="font-size:160%;">&nbsp;</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-3-fatigue-after" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-3-fatigue-time" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-3-time" style="font-size:140%;">&nbsp;</span></b></td>
 		</tr>
 		<tr id="row-4">
-		    <td style="vertical-align:middle;"><span style="font-size:160%;">#4</span></td>
+		    <td style="vertical-align:middle;"><span style="font-size:140%;">#4</span></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-4-cooldown" style="font-size:140%;">&nbsp;</span></b></td>
 		    <td class="text-center">
 			<br>
 			<input id="wait-4-input" style="display: inline;" onchange="recalc();" onkeyup="recalc();" type="range" min="0" max="0" step="1">
@@ -156,6 +169,7 @@
 			    <span id="wait-4-value"></span>
 			    <span id="wait-4-max" class="pull-right text-muted"></span>
 		    </td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-4-fatigue-before" style="font-size:140%;">&nbsp;</span></b></td>
 		    <td class="text-center">
 			<br>
 			<input id="distance-4-input" style="display: inline;" onchange="recalc();" onkeyup="recalc();" type="range" min="0" max="0" step="0.01">
@@ -163,11 +177,13 @@
 			    <span id="distance-4-value"></span>
 			    <span id="distance-4-max" class="pull-right text-muted"></span>
 		    </td>
-		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-4-time" style="font-size:160%;">&nbsp;</span></b></td>
-		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-4-fatigue" style="font-size:160%;">&nbsp;</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-4-fatigue-after" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-4-fatigue-time" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-4-time" style="font-size:140%;">&nbsp;</span></b></td>
 		</tr>
 		<tr id="row-5">
-		    <td style="vertical-align:middle;"><span style="font-size:160%;">#5</span></td>
+		    <td style="vertical-align:middle;"><span style="font-size:140%;">#5</span></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-5-cooldown" style="font-size:140%;">&nbsp;</span></b></td>
 		    <td class="text-center">
 			<br>
 			<input id="wait-5-input" style="display: inline;" onchange="recalc();" onkeyup="recalc();" type="range" min="0" max="0" step="1">
@@ -175,6 +191,7 @@
 			    <span id="wait-5-value"></span>
 			    <span id="wait-5-max" class="pull-right text-muted"></span>
 		    </td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-5-fatigue-before" style="font-size:140%;">&nbsp;</span></b></td>
 		    <td class="text-center">
 			<br>
 			<input id="distance-5-input" style="display: inline;" onchange="recalc();" onkeyup="recalc();" type="range" min="0" max="0" step="0.01">
@@ -182,11 +199,13 @@
 			    <span id="distance-5-value"></span>
 			    <span id="distance-5-max" class="pull-right text-muted"></span>
 		    </td>
-		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-5-time" style="font-size:160%;">&nbsp;</span></b></td>
-		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-5-fatigue" style="font-size:160%;">&nbsp;</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-5-fatigue-after" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-5-fatigue-time" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-5-time" style="font-size:140%;">&nbsp;</span></b></td>
 		</tr>
 		<tr id="row-6">
-		    <td style="vertical-align:middle;"><span style="font-size:160%;">#6</span></td>
+		    <td style="vertical-align:middle;"><span style="font-size:140%;">#6</span></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-6-cooldown" style="font-size:140%;">&nbsp;</span></b></td>
 		    <td class="text-center">
 			<br>
 			<input id="wait-6-input" style="display: inline;" onchange="recalc();" onkeyup="recalc();" type="range" min="0" max="0" step="1">
@@ -194,6 +213,7 @@
 			    <span id="wait-6-value"></span>
 			    <span id="wait-6-max" class="pull-right text-muted"></span>
 		    </td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-6-fatigue-before" style="font-size:140%;">&nbsp;</span></b></td>
 		    <td class="text-center">
 			<br>
 			<input id="distance-6-input" style="display: inline;" onchange="recalc();" onkeyup="recalc();" type="range" min="0" max="0" step="0.01">
@@ -201,11 +221,13 @@
 			    <span id="distance-6-value"></span>
 			    <span id="distance-6-max" class="pull-right text-muted"></span>
 		    </td>
-		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-6-time" style="font-size:160%;">&nbsp;</span></b></td>
-		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-6-fatigue" style="font-size:160%;">&nbsp;</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-6-fatigue-after" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-6-fatigue-time" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-6-time" style="font-size:140%;">&nbsp;</span></b></td>
 		</tr>
 		<tr id="row-7">
-		    <td style="vertical-align:middle;"><span style="font-size:160%;">#7</span></td>
+		    <td style="vertical-align:middle;"><span style="font-size:140%;">#7</span></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-7-cooldown" style="font-size:140%;">&nbsp;</span></b></td>
 		    <td class="text-center">
 			<br>
 			<input id="wait-7-input" style="display: inline;" onchange="recalc();" onkeyup="recalc();" type="range" min="0" max="0" step="1">
@@ -213,6 +235,7 @@
 			    <span id="wait-7-value"></span>
 			    <span id="wait-7-max" class="pull-right text-muted"></span>
 		    </td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-7-fatigue-before" style="font-size:140%;">&nbsp;</span></b></td>
 		    <td class="text-center">
 			<br>
 			<input id="distance-7-input" style="display: inline;" onchange="recalc();" onkeyup="recalc();" type="range" min="0" max="0" step="0.01">
@@ -220,11 +243,13 @@
 			    <span id="distance-7-value"></span>
 			    <span id="distance-7-max" class="pull-right text-muted"></span>
 		    </td>
-		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-7-time" style="font-size:160%;">&nbsp;</span></b></td>
-		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-7-fatigue" style="font-size:160%;">&nbsp;</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-7-fatigue-after" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-7-fatigue-time" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-7-time" style="font-size:140%;">&nbsp;</span></b></td>
 		</tr>
 		<tr id="row-8">
-		    <td style="vertical-align:middle;"><span style="font-size:160%;">#8</span></td>
+		    <td style="vertical-align:middle;"><span style="font-size:140%;">#8</span></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-8-cooldown" style="font-size:140%;">&nbsp;</span></b></td>
 		    <td class="text-center">
 			<br>
 			<input id="wait-8-input" style="display: inline;" onchange="recalc();" onkeyup="recalc();" type="range" min="0" max="0" step="1">
@@ -232,6 +257,7 @@
 			    <span id="wait-8-value"></span>
 			    <span id="wait-8-max" class="pull-right text-muted"></span>
 		    </td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-8-fatigue-before" style="font-size:140%;">&nbsp;</span></b></td>
 		    <td class="text-center">
 			<br>
 			<input id="distance-8-input" style="display: inline;" onchange="recalc();" onkeyup="recalc();" type="range" min="0" max="0" step="0.01">
@@ -239,11 +265,13 @@
 			    <span id="distance-8-value"></span>
 			    <span id="distance-8-max" class="pull-right text-muted"></span>
 		    </td>
-		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-8-time" style="font-size:160%;">&nbsp;</span></b></td>
-		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-8-fatigue" style="font-size:160%;">&nbsp;</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-8-fatigue-after" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-8-fatigue-time" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-8-time" style="font-size:140%;">&nbsp;</span></b></td>
 		</tr>
 		<tr id="row-9">
-		    <td style="vertical-align:middle;"><span style="font-size:160%;">#9</span></td>
+		    <td style="vertical-align:middle;"><span style="font-size:140%;">#9</span></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-9-cooldown" style="font-size:140%;">&nbsp;</span></b></td>
 		    <td class="text-center">
 			<br>
 			<input id="wait-9-input" style="display: inline;" onchange="recalc();" onkeyup="recalc();" type="range" min="0" max="0" step="1">
@@ -251,6 +279,7 @@
 			    <span id="wait-9-value"></span>
 			    <span id="wait-9-max" class="pull-right text-muted"></span>
 		    </td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-9-fatigue-before" style="font-size:140%;">&nbsp;</span></b></td>
 		    <td class="text-center">
 			<br>
 			<input id="distance-9-input" style="display: inline;" onchange="recalc();" onkeyup="recalc();" type="range" min="0" max="0" step="0.01">
@@ -258,8 +287,9 @@
 			    <span id="distance-9-value"></span>
 			    <span id="distance-9-max" class="pull-right text-muted"></span>
 		    </td>
-		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-9-time" style="font-size:160%;">&nbsp;</span></b></td>
-		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-9-fatigue" style="font-size:160%;">&nbsp;</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-9-fatigue-after" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-9-fatigue-time" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-9-time" style="font-size:140%;">&nbsp;</span></b></td>
 		</tr>
 	    </tbody>
 	</table>
