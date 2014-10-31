@@ -133,6 +133,8 @@ function toTime(m) {
 
     str = "";
 
+    ena = false;
+
     if (years != 0) {
 	str = str + years + "y ";
     }
@@ -145,7 +147,7 @@ function toTime(m) {
 	str = str + hours + "h ";
     }
 
-    str = str + minutes + "m"
+    str = str + minutes + "m";
 
     return str;
 }
@@ -190,19 +192,18 @@ function recalc() {
     maxrange = baserange * (1 + jdc * 0.2);
 
     traveltime = 0;
-    fatigue = 0.0;
+    fatigue = 0;
 
     distance = refreshInputDistance('#distance-1', 0, maxrange);
-    cooldown = 1 + distance * (1 - modifier);
-    fatigue = 1 + distance * (1 - modifier);
+    cooldown = (1 + distance * (1 - modifier));
+    fatigue = 10 * (1 + distance * (1 - modifier));
 
     if ($("#distance-1-input").val() == 0) {
 	$("#result-1-fatigue-after").html('<span class="text-muted">N/A</span>');
 	$("#result-1-fatigue-time").html('<span class="text-muted">N/A</span>');
 	$("#result-1-time").html('<span class="text-muted">N/A</span>');
     } else {
-	$("#result-1-fatigue-after").html((fatigue).toFixed(2));
-	$("#result-1-fatigue-time").html("<span class='text-muted'><small>" + toTime(fatigue * 10 - 10) + "</small></span>");
+	$("#result-1-fatigue-after").html(toTime(fatigue));
 	$("#result-1-time").html("0m");
     }
 
@@ -211,17 +212,17 @@ function recalc() {
     for (i=2; i < 10; i++) {
 	$("#result-" + i + "-cooldown").html(toTime(cooldown));
 	traveltime += cooldown;
-	fatigue -= cooldown / 10;
+	fatigue -= cooldown;
 
-	wait = refreshInputTime('#wait-' + i, 0, Math.ceil(fatigue / 0.1 - 10));
+	wait = refreshInputTime('#wait-' + i, 0, Math.ceil(fatigue - 10));
 	traveltime += wait;
-	fatigue -= wait * 0.1;
-	$("#result-" + i + "-fatigue-before").html((fatigue).toFixed(2));
+	fatigue -= wait;
+	$("#result-" + i + "-fatigue-before").html(toTime(fatigue));
 
 	distance = refreshInputDistance('#distance-' + i, 0, maxrange);
-	cooldown = Math.max(1 + distance * (1 - modifier), fatigue);
-	fatigue = Math.max(fatigue, 1) * (1 + distance * (1 - modifier));
-	fatigue = Math.min(fatigue, 60 * 24 * 30 / 10);
+	cooldown = Math.max(fatigue / 10, 1 + distance * (1 - modifier));
+	fatigue = Math.max(fatigue, 10) * (1 + distance * (1 - modifier));
+	fatigue = Math.min(fatigue, 60 * 24 * 30);
 
 	if ($("#distance-" + (i - 1) + "-input").val() == 0) {
 	    hide = true;
@@ -236,10 +237,8 @@ function recalc() {
 	if ($("#distance-" + i + "-input").val() == 0) {
 	    $("#result-" + i + "-fatigue-after").html('<span class="text-muted">N/A</span>');
 	    $("#result-" + i + "-time").html('<span class="text-muted">N/A</span>');
-	    $("#result-" + i + "-fatigue-time").html('<span class="text-muted">N/A</span>');
 	} else {
-	    $("#result-" + i + "-fatigue-after").html((fatigue).toFixed(2));
-	    $("#result-" + i + "-fatigue-time").html("<span class='text-muted'><small>" + toTime(fatigue * 10 - 10) + "</small></span>");
+	    $("#result-" + i + "-fatigue-after").html(toTime(fatigue));
 	    $("#result-" + i + "-time").html(toTime(traveltime));
 	}
     }
