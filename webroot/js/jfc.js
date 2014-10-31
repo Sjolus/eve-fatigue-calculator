@@ -133,21 +133,26 @@ function toTime(m) {
 
     str = "";
 
-    ena = false;
+    show = false;
 
     if (years != 0) {
+	show = true;
 	str = str + years + "y ";
     }
 
     if (days != 0) {
+	show = true;
 	str = str + days + "d ";
     }
 
     if (hours != 0) {
+	show = true;
 	str = str + hours + "h ";
     }
 
-    str = str + minutes + "m";
+    if (minutes != 0 || !show) {
+	str = str + minutes + "m";
+    }
 
     return str;
 }
