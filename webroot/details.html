@@ -36,6 +36,16 @@
 
 <!-- Content -->
     <div class="container">
+	<h3>Mechanic</h3>
+	<p>Jump fatigue is not limited to capital pilots, it also affects anyone using a jumpbridge. Please <a href="http://community.eveonline.com/news/dev-blogs/phoebe-travel-change-update/">read up</a> on the topic as its important for everyone to understand the new mechanic.</p>
+	<br>
+	<p><b>Cooldown</b> = Timer preventing you from jumping</p>
+	<p><b>Fatigue</b> = Penalty timer used as a basis for the cooldown timer</p>
+	<p><u>Everytime you travel using a jump mechanic this happens:</u></p>
+	<ul>
+	    <li>Your current fatigue timer is taken and divided by ten. The result is compared against the distance you travelled in lightyears + 1 and whichever is greater will be your cooldown timer after the jump.</li>
+	<li>Your current fatigue timer or at least 10 minutes is taken and multiplied by the distance you travelled in lightyears + 1. If the timer exceeds 30 days it will be capped. This will be your new fatigue timer.</li>
+	</ul>
 
 	<h3>Calculation</h3>
 	<p><b>Cooldown (minutes)</b> = Max ( fatigue / 10, 1 + ( distance in lightyears * ( 1 - bonus ) ) )</p>
