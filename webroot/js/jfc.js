@@ -157,6 +157,13 @@ function toTime(m) {
     return str;
 }
 
+function getPreFatigue() {
+    var h = Number($("#prefatigue-input-h").val());
+    var m = Number($("#prefatigue-input-m").val());
+    var sum = h * 60 + m;
+    return Math.min(720, sum);
+}
+
 function refreshInputTime(obj, min, max) {
     max = Math.max(min, max);
 
@@ -197,11 +204,12 @@ function recalc() {
     maxrange = baserange * (1 + jdc * 0.2);
 
     traveltime = 0;
-    fatigue = 0;
+    fatigue = getPreFatigue();
 
     distance = refreshInputDistance('#distance-1', 0, maxrange);
-    cooldown = (1 + distance * (1 - modifier));
-    fatigue = 10 * (1 + distance * (1 - modifier));
+    cooldown = Math.max(fatigue / 10, 1 + distance * (1 - modifier));
+    fatigue = Math.max(fatigue, 10) * (1 + distance * (1 - modifier));
+    fatigue = Math.min(fatigue, 60 * 24 * 30);
 
     if ($("#distance-1-input").val() == 0) {
 	$("#result-1-fatigue-after").html('<span class="text-muted">N/A</span>');

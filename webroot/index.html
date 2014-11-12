@@ -19,10 +19,16 @@
 <!-- Navigation -->
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	<div class="navbar-header">
-	    <a class="navbar-brand" href="#"><b>Jump Fatigue Calculator</b></a>
-	</div>
-	<div class="navbar-collapse collapse navbar-responsive-collapse">
-	    <ul class="nav navbar-nav navbar-left">
+	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+		<span class="sr-only">Toggle navigation</span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+            </button>
+	    <a class="navbar-brand" href="/"><b>Jump Fatigue Calculator</b></a>
+        </div>
+	<div class="navbar-collapse collapse navbar-inverse-collapse">
+	    <ul class="nav navbar-nav">
 		<li class="navbar-text" style="border-right:1px solid;">&nbsp;</li>
 		<li class="active"><a href="index.html">Calculator</a></li>
 		<li><a href="details.html">Details</a></li>
@@ -36,6 +42,8 @@
 
 <!-- Content -->
     <div class="container">
+
+
 
 	<span id="option-travel" style="font-size:140%;">
 	    <label>I travel by </label>
@@ -102,7 +110,16 @@
 		    <td style="vertical-align:middle;"><span style="font-size:140%;">#1</span></td>
 		    <td class="text-right" style="vertical-align:middle;"><b><span style="font-size:140%;" class="text-muted">N/A</span></b></td>
 		    <td class="text-center" style="vertical-align:middle;"><b><span style="font-size:140%;" class="text-muted">N/A</span></b></td>
-		    <td class="text-right" style="vertical-align:middle;"><b><span style="font-size:140%;">0m</span></b></td>
+		    <td class="text-right col-md-2" style="vertical-align:middle;">
+			<form class="form-inline">
+			    <div class="form-group">
+				<div class="input-group">
+				    <input id="prefatigue-input-h" type="number" class="form-control text-right" onchange="recalc();" onkeyup="recalc();" placeholder="HH" max="719" min="0" step="1" style="width: 50%;">
+				    <input id="prefatigue-input-m" type="number" class="form-control text-right" onchange="recalc();" onkeyup="recalc();" placeholder="MM" max="59"  min="0" step="1" style="width: 50%;">
+				</div>
+			    </div>
+			</form>
+		    </td>
 		    <td class="text-center">
 			<br>
 			<input id="distance-1-input" style="display: inline;" onchange="recalc();" onkeyup="recalc();" type="range" min="0" max="0" step="0.01">
