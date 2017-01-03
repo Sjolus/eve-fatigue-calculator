@@ -1,6 +1,6 @@
 // ---------------------------------------------------------------
 
-var selectTravel = 1;
+var selectTravel = 2;
 var selectShip = 4;
 var selectShipCovert = 1;
 var selectJdc = 5;
@@ -20,6 +20,7 @@ $(document).ready(function() {
 function readjust() {
     $("#option-jdc").addClass('hide');
     $("#option-ship").addClass('hide');
+    $("#option-ship-bridged").addClass('hide');
     $("#option-ship-covert").addClass('hide');
 
     $("#option-travel button").each(function( index ) {
@@ -33,6 +34,12 @@ function readjust() {
         $(this).addClass('btn-default');
     });
     $("#option-ship-" + selectShip).addClass('btn-primary');
+
+    $("#option-ship-bridged button").each(function( index ) {
+        $(this).removeClass('btn-primary');
+        $(this).addClass('btn-default');
+    });
+    $("#option-ship-bridged-" + selectShip).addClass('btn-primary');
 
     $("#option-ship-covert button").each(function( index ) {
         $(this).removeClass('btn-primary');
@@ -48,7 +55,7 @@ function readjust() {
 
 
     if (selectTravel == 1) {
-	$("#option-ship").removeClass('hide');
+	$("#option-ship-bridged").removeClass('hide');
 
 	baserange = 5;
 	jdc = 0;
@@ -56,7 +63,7 @@ function readjust() {
 
 	if (selectShip == 1) modifier = 0.5;
 	if (selectShip == 2) modifier = 0.9;
-	if (selectShip == 3) modifier = 0.9;
+	if (selectShip == 3) modifier = 0.0;
     }
 
     if (selectTravel == 2) {
@@ -74,17 +81,37 @@ function readjust() {
 	    modifier = 0.9;
 	    break;
 	case 3:
-	    baserange = 2.5;
-	    modifier = 0.9;
+	    baserange = 3.5;
+	    modifier = 0.0;
 	    break;
 	case 4:
-	    baserange = 2.5;
+	    baserange = 3.0;
 	    modifier = 0.0;
 	    break;
 	} 
     }
 
     if (selectTravel == 3) {
+	$("#option-ship-bridged").removeClass('hide');
+	$("#option-jdc").removeClass('hide');
+
+	jdc = selectJdc;
+	baserange = 3.0;
+
+	switch(selectShip) {
+	case 1:
+	    modifier = 0.5;
+	    break;
+	case 2:
+	    modifier = 0.9;
+	    break;
+	case 3:
+	    modifier = 0.0;
+	    break;
+	} 
+    }
+
+    if (selectTravel == 4) {
 	$("#option-ship-covert").removeClass('hide');
 	$("#option-jdc").removeClass('hide');
 
@@ -201,7 +228,7 @@ function refreshInputDistance(obj, min, max) {
 
 
 function recalc() {
-    maxrange = baserange * (1 + jdc * 0.2);
+    maxrange = +(baserange * (1 + jdc * 0.2)).toFixed(2);
 
     traveltime = 0;
     fatigue = getPreFatigue();

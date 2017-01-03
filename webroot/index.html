@@ -47,9 +47,10 @@
 
 	<span id="option-travel" style="font-size:140%;">
 	    <label>I travel by </label>
+	    <button id="option-travel-2" class="btn btn-default btn-sm" onclick="selectTravel = 2; readjust();"><b>jumping to a Cyno</b></button>
+	    <button id="option-travel-3" class="btn btn-default btn-sm" onclick="selectTravel = 3; readjust();"><b>being bridged by a Titan</b></button>
 	    <button id="option-travel-1" class="btn btn-default btn-sm" onclick="selectTravel = 1; readjust();"><b>using a Jumpbridge</b></button>
-	    <button id="option-travel-2" class="btn btn-default btn-sm" onclick="selectTravel = 2; readjust();"><b>jumping to a Cyno / being bridged by a Titan</b></button>
-	    <button id="option-travel-3" class="btn btn-default btn-sm" onclick="selectTravel = 3; readjust();"><b>jumping to a Covert Cyno / being bridged by a Black Ops</b></button>
+	    <button id="option-travel-4" class="btn btn-default btn-sm" onclick="selectTravel = 4; readjust();"><b>jumping to a Covert Cyno / being bridged by a Black Ops</b></button>
 	</span>
 
 <br>
@@ -60,12 +61,19 @@
 	    <button id="option-ship-covert-2" class="btn btn-default btn-sm" onclick="selectShipCovert = 2; readjust();"><b>Blockade Runner</b></button>
 	</span>
 
+	<span id="option-ship-bridged" style="font-size:140%;" class="hide">
+	    <label>I am in a </label>
+	    <button id="option-ship-bridged-1" class="btn btn-default btn-sm" onclick="selectShip = 1; readjust();"><b>Black Ops, Covert Ops, Force Recon</b></button>
+	    <button id="option-ship-bridged-2" class="btn btn-default btn-sm" onclick="selectShip = 2; readjust();"><b>Standard-, Advanced-, Capital-Industrial, Freighter, Jumpfreighter</b></button>
+	    <button id="option-ship-bridged-3" class="btn btn-default btn-sm" onclick="selectShip = 3; readjust();"><b>Everything else</b></button>
+	</span>
+
 	<span id="option-ship" style="font-size:140%;" class="hide">
 	    <label>I am in a </label>
 	    <button id="option-ship-1" class="btn btn-default btn-sm" onclick="selectShip = 1; readjust();"><b>Black Ops</b></button>
-	    <button id="option-ship-2" class="btn btn-default btn-sm" onclick="selectShip = 2; readjust();"><b>Jumpfreighter</b></button>
-	    <button id="option-ship-3" class="btn btn-default btn-sm" onclick="selectShip = 3; readjust();"><b>Standard-, Advanced-, Capital-Industrial, Freighter</b></button>
-	    <button id="option-ship-4" class="btn btn-default btn-sm" onclick="selectShip = 4; readjust();"><b>Everything else</b></button>
+	    <button id="option-ship-2" class="btn btn-default btn-sm" onclick="selectShip = 2; readjust();"><b>Jumpfreighter, Rorqual</b></button>
+	    <button id="option-ship-3" class="btn btn-default btn-sm" onclick="selectShip = 3; readjust();"><b>Carrier, Force Auxillary, Dreadnought</b></button>
+	    <button id="option-ship-4" class="btn btn-default btn-sm" onclick="selectShip = 4; readjust();"><b>Supercarrier, Titan</b></button>
 	</span>
 
 <br>
@@ -305,7 +313,6 @@
     </div>
 <!-- Content -->
 
-    <div style="font-size:70%; position:fixed; bottom:1px; left:5px; z-index:23;">Based on the <a href="http://community.eveonline.com/news/dev-blogs/phoebe-travel-change-update/">CCP devblog</a> released 30.10.2014 17:19</div>
     <div style="font-size:70%; position:fixed; bottom:1px; right:5px; z-index:23;">Brought to you by <a href="http://evewho.com/pilot/kiu+Nakamura">kiu Nakamura</a> / <a href="http://evewho.com/alli/Brave+Collective">Brave Collective</a></div>
 
     <script src="js/jquery-1.10.2.min.js"></script>
