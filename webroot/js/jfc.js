@@ -236,7 +236,7 @@ function recalc() {
     distance = refreshInputDistance('#distance-1', 0, maxrange);
     cooldown = Math.max(fatigue / 10, 1 + distance * (1 - modifier));
     fatigue = Math.max(fatigue, 10) * (1 + distance * (1 - modifier));
-    fatigue = Math.min(fatigue, 60 * 24 * 30);
+    fatigue = Math.min(fatigue, 60 * 24 * 5);
 
     if ($("#distance-1-input").val() == 0) {
 	$("#result-1-fatigue-after").html('<span class="text-muted">N/A</span>');
@@ -262,7 +262,7 @@ function recalc() {
 	distance = refreshInputDistance('#distance-' + i, 0, maxrange);
 	cooldown = Math.max(fatigue / 10, 1 + distance * (1 - modifier));
 	fatigue = Math.max(fatigue, 10) * (1 + distance * (1 - modifier));
-	fatigue = Math.min(fatigue, 60 * 24 * 30);
+	fatigue = Math.min(fatigue, 60 * 24 * 5);
 
 	if ($("#distance-" + (i - 1) + "-input").val() == 0) {
 	    hide = true;
