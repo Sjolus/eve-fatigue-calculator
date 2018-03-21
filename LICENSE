@@ -1,6 +1,10 @@
 The MIT License (MIT)
 
 Copyright (c) 2014 kiu
+                   - original webapp as versioned at https://github.com/kiu/jump-fatigue-calculator/tree/15e862f9c03b245e28b489bff5b79e0ae0017874
+
+Copyright (c) 2018 oaao
+                   - modifications to static values, UI, and mechanics
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

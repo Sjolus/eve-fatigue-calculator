@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="narcolepsy">
+    <meta name="author" content="kiu Nakamura, oaao">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="shortcut icon" href="favicon.png">
+    <title>narcolepsy</title>
+    <link href="css/bootstrap-cyborg.css" rel="stylesheet">
+    <link href="css/jfc.css" rel="stylesheet">
+  </head>
+
+<body>
+
+<!-- Navigation -->
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="navbar-header">
+	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+		<span class="sr-only">toggle navigation</span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+            </button>
+	    <a class="navbar-brand" href="/"><b>narcolepsy</b></a>
+        </div>
+	<div class="navbar-collapse collapse navbar-inverse-collapse">
+	    <ul class="nav navbar-nav">
+		<li class="navbar-text" style="border-right:1px solid;">&nbsp;</li>
+		<li class="active"><a href="index.html">calculator</a></li>
+		<li><a href="details.html">details</a></li>
+		<li>&nbsp;</li>
+	    </ul>
+	</div>
+    </div>
+<!-- Navigation -->
+
+<br>
+
+<!-- Content -->
+    <div class="container">
+
+
+
+	<span id="option-travel" style="font-size:140%;">
+	    <label>travel via: </label>
+	    <button id="option-travel-2" class="btn btn-default btn-sm" onclick="selectTravel = 2; readjust();"><b>cyno</b></button>
+	    <button id="option-travel-3" class="btn btn-default btn-sm" onclick="selectTravel = 3; readjust();"><b>titan bridge</b></button>
+	    <button id="option-travel-1" class="btn btn-default btn-sm" onclick="selectTravel = 1; readjust();"><b>JB</b></button>
+	    <button id="option-travel-4" class="btn btn-default btn-sm" onclick="selectTravel = 4; readjust();"><b>covcyno | blops bridge</b></button>
+	</span>
+
+<br>
+
+	<span id="option-ship -covert" style="font-size:140%;" class="hide">
+	    <label>ship type:</label>
+	    <button id="option-ship-covert-1" class="btn btn-default btn-sm" onclick="selectShipCovert = 1; readjust();"><b>blops | covops | force recon</b></button>
+	    <button id="option-ship-covert-2" class="btn btn-default btn-sm" onclick="selectShipCovert = 2; readjust();"><b>blockade runner</b></button>
+	</span>
+
+	<span id="option-ship-bridged" style="font-size:140%;" class="hide">
+	    <label>ship type: </label>
+	    <button id="option-ship-bridged-1" class="btn btn-default btn-sm" onclick="selectShip = 1; readjust();"><b>blops | covops | force recon</b></button>
+	    <button id="option-ship-bridged-2" class="btn btn-default btn-sm" onclick="selectShip = 2; readjust();"><b>pod | shuttle | industrial (T1, T2, rorq, freighter, JF)</b></button>
+	    <button id="option-ship-bridged-3" class="btn btn-default btn-sm" onclick="selectShip = 3; readjust();"><b>everything else</b></button>
+	</span>
+
+	<span id="option-ship" style="font-size:140%;" class="hide">
+	    <label>ship type: </label>
+	    <button id="option-ship-1" class="btn btn-default btn-sm" onclick="selectShip = 1; readjust();"><b>blops</b></button>
+	    <button id="option-ship-2" class="btn btn-default btn-sm" onclick="selectShip = 2; readjust();"><b>JF | rorq</b></button>
+	    <button id="option-ship-3" class="btn btn-default btn-sm" onclick="selectShip = 3; readjust();"><b>carrier | FAX | dread</b></button>
+	    <button id="option-ship-4" class="btn btn-default btn-sm" onclick="selectShip = 4; readjust();"><b>super | titan</b></button>
+	</span>
+
+<br>
+
+	<span id="option-jdc" style="font-size:140%;" class="hide">
+	    <label>i (or the bridger) have: </label>
+	    <button id="option-jdc-1" class="btn btn-default btn-sm" onclick="selectJdc = 1; readjust();"><b>JDC I</b></button>
+	    <button id="option-jdc-2" class="btn btn-default btn-sm" onclick="selectJdc = 2; readjust();"><b>JDC II</b></button>
+	    <button id="option-jdc-3" class="btn btn-default btn-sm" onclick="selectJdc = 3; readjust();"><b>JDC III</b></button>
+	    <button id="option-jdc-4" class="btn btn-default btn-sm" onclick="selectJdc = 4; readjust();"><b>JDC IV</b></button>
+	    <button id="option-jdc-5" class="btn btn-default btn-sm" onclick="selectJdc = 5; readjust();"><b>JDC V</b></button>
+	</span>
+
+	<hr>
+
+	<span class="pull-left">
+	    Fatigue Bonus: <b id="fatigue-bonus">6nbsp;</b>
+	</span>
+	<span class="pull-right">
+	    Set all distances to 
+	    <button class="btn btn-default btn-xs btn-danger" onclick="resetMin();"><b>MIN</b></button>
+	    <button class="btn btn-default btn-xs btn-danger" onclick="resetMax();"><b>MAX</b></button>
+	</span>
+
+	<br>
+	<br>
+
+	<table class="table table-hover table-striped">
+	    <thead>
+		<tr>
+		    <th>Jump<br>&nbsp;</th>
+		    <th class="text-right">Cooldown<br>&nbsp;</th>
+		    <th class="text-center">Wait Period<br><span class="text-muted"><small>(optional)</small></span></th>
+		    <th class="text-right">Fatigue*<br><span class="text-muted"><small>(before jump)</small></span></th>
+		    <th class="text-center">Jump Distance<br>&nbsp;</th>
+		    <th class="text-right">Fatigue*<br><span class="text-muted"><small>(after jump)</small></span></th>
+		    <th class="text-right">Travel Time<br><span class="text-muted"><small>(sum)</small></span></th>
+		</tr>
+	    </thead>
+	    <tbody>
+		<tr id="row-1">
+		    <td style="vertical-align:middle;"><span style="font-size:140%;">#1</span></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span style="font-size:140%;" class="text-muted">N/A</span></b></td>
+		    <td class="text-center" style="vertical-align:middle;"><b><span style="font-size:140%;" class="text-muted">N/A</span></b></td>
+		    <td class="text-right col-md-2" style="vertical-align:middle;">
+			<form class="form-inline">
+			    <div class="form-group">
+				<div class="input-group">
+				    <input id="prefatigue-input-h" type="number" class="form-control text-right" onchange="recalc();" onkeyup="recalc();" placeholder="HH" max="719" min="0" step="1" style="width: 50%;">
+				    <input id="prefatigue-input-m" type="number" class="form-control text-right" onchange="recalc();" onkeyup="recalc();" placeholder="MM" max="59"  min="0" step="1" style="width: 50%;">
+				</div>
+			    </div>
+			</form>
+		    </td>
+		    <td class="text-center">
+			<br>
+			<input id="distance-1-input" style="display: inline;" onchange="recalc();" onkeyup="recalc();" type="range" min="0" max="0" step="0.01">
+			    <span id="distance-1-min" class="pull-left text-muted"></span>
+			    <span id="distance-1-value"></span>
+			    <span id="distance-1-max" class="pull-right text-muted"></span>
+		    </td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-1-fatigue-after" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-1-time" style="font-size:140%;">&nbsp;</span></b></td>
+		</tr>
+		<tr id="row-2">
+		    <td style="vertical-align:middle;"><span style="font-size:140%;">#2</span></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-2-cooldown" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-center">
+			<br>
+			<input id="wait-2-input" style="display: inline;" onchange="recalc();" onkeyup="recalc();" type="range" min="0" max="0" step="1">
+			    <span id="wait-2-min" class="pull-left text-muted"></span>
+			    <span id="wait-2-value"></span>
+			    <span id="wait-2-max" class="pull-right text-muted"></span>
+		    </td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-2-fatigue-before" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-center">
+			<br>
+			<input id="distance-2-input" style="display: inline;" onchange="recalc();" onkeyup="recalc();" type="range" min="0" max="0" step="0.01">
+			    <span id="distance-2-min" class="pull-left text-muted"></span>
+			    <span id="distance-2-value"></span>
+			    <span id="distance-2-max" class="pull-right text-muted"></span>
+		    </td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-2-fatigue-after" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-2-time" style="font-size:140%;">&nbsp;</span></b></td>
+		</tr>
+		<tr id="row-3">
+		    <td style="vertical-align:middle;"><span style="font-size:140%;">#3</span></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-3-cooldown" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-center">
+			<br>
+			<input id="wait-3-input" style="display: inline;" onchange="recalc();" onkeyup="recalc();" type="range" min="0" max="0" step="1">
+			    <span id="wait-3-min" class="pull-left text-muted"></span>
+			    <span id="wait-3-value"></span>
+			    <span id="wait-3-max" class="pull-right text-muted"></span>
+		    </td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-3-fatigue-before" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-center">
+			<br>
+			<input id="distance-3-input" style="display: inline;" onchange="recalc();" onkeyup="recalc();" type="range" min="0" max="0" step="0.01">
+			    <span id="distance-3-min" class="pull-left text-muted"></span>
+			    <span id="distance-3-value"></span>
+			    <span id="distance-3-max" class="pull-right text-muted"></span>
+		    </td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-3-fatigue-after" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-3-time" style="font-size:140%;">&nbsp;</span></b></td>
+		</tr>
+		<tr id="row-4">
+		    <td style="vertical-align:middle;"><span style="font-size:140%;">#4</span></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-4-cooldown" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-center">
+			<br>
+			<input id="wait-4-input" style="display: inline;" onchange="recalc();" onkeyup="recalc();" type="range" min="0" max="0" step="1">
+			    <span id="wait-4-min" class="pull-left text-muted"></span>
+			    <span id="wait-4-value"></span>
+			    <span id="wait-4-max" class="pull-right text-muted"></span>
+		    </td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-4-fatigue-before" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-center">
+			<br>
+			<input id="distance-4-input" style="display: inline;" onchange="recalc();" onkeyup="recalc();" type="range" min="0" max="0" step="0.01">
+			    <span id="distance-4-min" class="pull-left text-muted"></span>
+			    <span id="distance-4-value"></span>
+			    <span id="distance-4-max" class="pull-right text-muted"></span>
+		    </td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-4-fatigue-after" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-4-time" style="font-size:140%;">&nbsp;</span></b></td>
+		</tr>
+		<tr id="row-5">
+		    <td style="vertical-align:middle;"><span style="font-size:140%;">#5</span></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-5-cooldown" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-center">
+			<br>
+			<input id="wait-5-input" style="display: inline;" onchange="recalc();" onkeyup="recalc();" type="range" min="0" max="0" step="1">
+			    <span id="wait-5-min" class="pull-left text-muted"></span>
+			    <span id="wait-5-value"></span>
+			    <span id="wait-5-max" class="pull-right text-muted"></span>
+		    </td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-5-fatigue-before" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-center">
+			<br>
+			<input id="distance-5-input" style="display: inline;" onchange="recalc();" onkeyup="recalc();" type="range" min="0" max="0" step="0.01">
+			    <span id="distance-5-min" class="pull-left text-muted"></span>
+			    <span id="distance-5-value"></span>
+			    <span id="distance-5-max" class="pull-right text-muted"></span>
+		    </td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-5-fatigue-after" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-5-time" style="font-size:140%;">&nbsp;</span></b></td>
+		</tr>
+		<tr id="row-6">
+		    <td style="vertical-align:middle;"><span style="font-size:140%;">#6</span></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-6-cooldown" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-center">
+			<br>
+			<input id="wait-6-input" style="display: inline;" onchange="recalc();" onkeyup="recalc();" type="range" min="0" max="0" step="1">
+			    <span id="wait-6-min" class="pull-left text-muted"></span>
+			    <span id="wait-6-value"></span>
+			    <span id="wait-6-max" class="pull-right text-muted"></span>
+		    </td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-6-fatigue-before" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-center">
+			<br>
+			<input id="distance-6-input" style="display: inline;" onchange="recalc();" onkeyup="recalc();" type="range" min="0" max="0" step="0.01">
+			    <span id="distance-6-min" class="pull-left text-muted"></span>
+			    <span id="distance-6-value"></span>
+			    <span id="distance-6-max" class="pull-right text-muted"></span>
+		    </td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-6-fatigue-after" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-6-time" style="font-size:140%;">&nbsp;</span></b></td>
+		</tr>
+		<tr id="row-7">
+		    <td style="vertical-align:middle;"><span style="font-size:140%;">#7</span></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-7-cooldown" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-center">
+			<br>
+			<input id="wait-7-input" style="display: inline;" onchange="recalc();" onkeyup="recalc();" type="range" min="0" max="0" step="1">
+			    <span id="wait-7-min" class="pull-left text-muted"></span>
+			    <span id="wait-7-value"></span>
+			    <span id="wait-7-max" class="pull-right text-muted"></span>
+		    </td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-7-fatigue-before" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-center">
+			<br>
+			<input id="distance-7-input" style="display: inline;" onchange="recalc();" onkeyup="recalc();" type="range" min="0" max="0" step="0.01">
+			    <span id="distance-7-min" class="pull-left text-muted"></span>
+			    <span id="distance-7-value"></span>
+			    <span id="distance-7-max" class="pull-right text-muted"></span>
+		    </td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-7-fatigue-after" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-7-time" style="font-size:140%;">&nbsp;</span></b></td>
+		</tr>
+		<tr id="row-8">
+		    <td style="vertical-align:middle;"><span style="font-size:140%;">#8</span></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-8-cooldown" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-center">
+			<br>
+			<input id="wait-8-input" style="display: inline;" onchange="recalc();" onkeyup="recalc();" type="range" min="0" max="0" step="1">
+			    <span id="wait-8-min" class="pull-left text-muted"></span>
+			    <span id="wait-8-value"></span>
+			    <span id="wait-8-max" class="pull-right text-muted"></span>
+		    </td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-8-fatigue-before" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-center">
+			<br>
+			<input id="distance-8-input" style="display: inline;" onchange="recalc();" onkeyup="recalc();" type="range" min="0" max="0" step="0.01">
+			    <span id="distance-8-min" class="pull-left text-muted"></span>
+			    <span id="distance-8-value"></span>
+			    <span id="distance-8-max" class="pull-right text-muted"></span>
+		    </td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-8-fatigue-after" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-8-time" style="font-size:140%;">&nbsp;</span></b></td>
+		</tr>
+		<tr id="row-9">
+		    <td style="vertical-align:middle;"><span style="font-size:140%;">#9</span></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-9-cooldown" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-center">
+			<br>
+			<input id="wait-9-input" style="display: inline;" onchange="recalc();" onkeyup="recalc();" type="range" min="0" max="0" step="1">
+			    <span id="wait-9-min" class="pull-left text-muted"></span>
+			    <span id="wait-9-value"></span>
+			    <span id="wait-9-max" class="pull-right text-muted"></span>
+		    </td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-9-fatigue-before" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-center">
+			<br>
+			<input id="distance-9-input" style="display: inline;" onchange="recalc();" onkeyup="recalc();" type="range" min="0" max="0" step="0.01">
+			    <span id="distance-9-min" class="pull-left text-muted"></span>
+			    <span id="distance-9-value"></span>
+			    <span id="distance-9-max" class="pull-right text-muted"></span>
+		    </td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-9-fatigue-after" style="font-size:140%;">&nbsp;</span></b></td>
+		    <td class="text-right" style="vertical-align:middle;"><b><span id="result-9-time" style="font-size:140%;">&nbsp;</span></b></td>
+		</tr>
+	    </tbody>
+	</table>
+	<p><small>* Be aware that there is <b>no benefit</b> to waiting for fatigue to decay <b>below 10 minutes</b></small></p>
+	<br>
+    </div>
+<!-- Content -->
+
+	<div style="font-size:70%; position:fixed; bottom:1px; left:5px; z-index:23;">
+		Based on original mechanics introduced in the <a href="http://community.eveonline.com/news/dev-blogs/phoebe-travel-change-update/">Phoebe expansion</a> released 30.10.2014 17:19
+		<p>
+		Updated with new jump ranges established in <a href="https://forums-archive.eveonline.com/topic/495521/">Ascension</a>, and fatigue mechanics established in the <a href="https://www.eveonline.com/article/p4ia05/sovereignty-warfare-and-jump-fatigue-changes-coming-in-the-march-release">"March release"</a> implemented 20.03.2018
+
+	</div>
+	<div style="font-size:70%; position:fixed; bottom:1px; right:5px; z-index:23;">
+		Rewritten for current mechanics by <a href="https://github.com/oaao">oaao</a>
+		<p>
+		Originally created by <a href="http://www.nakamura-labs.com">kiu Nakamura</a> / <a href="http://evewho.com/alli/Brave+Collective">Brave Collective</a>
+	</div>
+
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script src="js/jfc.js"></script>
+
+</body>
+</html>
