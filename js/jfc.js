@@ -61,7 +61,7 @@ function readjust() {
         jdc = 0;
         modifier = 0;
 
-        if (selectShip == 1) modifier = 0.5;
+        if (selectShip == 1) modifier = 0.75;
         if (selectShip == 2) modifier = 0.9;
         if (selectShip == 3) modifier = 0.0;
     }
@@ -118,8 +118,8 @@ function readjust() {
         baserange = 4.0;
         jdc = selectJdc;
 
-        if (selectShipCovert == 1) modifier = 0.5;
-        if (selectShipCovert == 2) modifier = 0.95;
+        if (selectShipCovert == 1) modifier = 0.75;
+        if (selectShipCovert == 2) modifier = 0.975;
     }
 
     $('#fatigue-bonus').html((modifier * 100) + "%");
