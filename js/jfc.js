@@ -55,71 +55,71 @@ function readjust() {
 
 
     if (selectTravel == 1) {
-	$("#option-ship-bridged").removeClass('hide');
+        $("#option-ship-bridged").removeClass('hide');
 
-	baserange = 5;
-	jdc = 0;
-	modifier = 0;
+        baserange = 5;
+        jdc = 0;
+        modifier = 0;
 
-	if (selectShip == 1) modifier = 0.5;
-	if (selectShip == 2) modifier = 0.9;
-	if (selectShip == 3) modifier = 0.0;
+        if (selectShip == 1) modifier = 0.5;
+        if (selectShip == 2) modifier = 0.9;
+        if (selectShip == 3) modifier = 0.0;
     }
 
     if (selectTravel == 2) {
-	$("#option-ship").removeClass('hide');
-	$("#option-jdc").removeClass('hide');
+        $("#option-ship").removeClass('hide');
+        $("#option-jdc").removeClass('hide');
 
-	jdc = selectJdc;
-	switch(selectShip) {
-	case 1:
-	    baserange = 4.0;
-	    modifier = 0.5;
-	    break;
-	case 2:
-	    baserange = 5.0;
-	    modifier = 0.9;
-	    break;
-	case 3:
-	    baserange = 3.5;
-	    modifier = 0.0;
-	    break;
-	case 4:
-	    baserange = 3.0;
-	    modifier = 0.0;
-	    break;
-	} 
+        jdc = selectJdc;
+        switch(selectShip) {
+            case 1:
+                baserange = 4.0;
+                modifier = 0.5;
+                break;
+            case 2:
+                baserange = 5.0;
+                modifier = 0.9;
+                break;
+            case 3:
+                baserange = 3.5;
+                modifier = 0.0;
+                break;
+            case 4:
+                baserange = 3.0;
+                modifier = 0.0;
+                break;
+        }
     }
 
     if (selectTravel == 3) {
-	$("#option-ship-bridged").removeClass('hide');
-	$("#option-jdc").removeClass('hide');
+        $("#option-ship-bridged").removeClass('hide');
+        $("#option-jdc").removeClass('hide');
 
-	jdc = selectJdc;
-	baserange = 3.0;
+        jdc = selectJdc;
+        baserange = 3.0;
 
-	switch(selectShip) {
-	case 1:
-	    modifier = 0.5;
-	    break;
-	case 2:
-	    modifier = 0.9;
-	    break;
-	case 3:
-	    modifier = 0.0;
-	    break;
-	} 
+        switch(selectShip) {
+            case 1:
+                modifier = 0.5;
+                break;
+            case 2:
+                modifier = 0.9;
+                break;
+            case 3:
+                modifier = 0.0;
+                break;
+        }
     }
 
     if (selectTravel == 4) {
-	$("#option-ship-covert").removeClass('hide');
-	$("#option-jdc").removeClass('hide');
+        $("#option-ship-covert").removeClass('hide');
+        $("#option-jdc").removeClass('hide');
 
-	baserange = 4.0;
-	jdc = selectJdc;
+        baserange = 4.0;
+        jdc = selectJdc;
 
-	if (selectShipCovert == 1) modifier = 0.5;
-	if (selectShipCovert == 2) modifier = 0.95;
+        if (selectShipCovert == 1) modifier = 0.5;
+        if (selectShipCovert == 2) modifier = 0.95;
     }
 
     $('#fatigue-bonus').html((modifier * 100) + "%");
@@ -128,18 +128,18 @@ function readjust() {
 
 function resetMin() {
     $("input").each(function( index ) {
-	if ($(this).prop('step') == '0.01') {
-	    $(this).val($(this).prop('min'));
-	}
+        if ($(this).prop('step') == '0.01') {
+            $(this).val($(this).prop('min'));
+        }
     });
     recalc();
 }
 
 function resetMax() {
     $("input").each(function( index ) {
-	if ($(this).prop('step') == '0.01') {
-	    $(this).val($(this).prop('max'));
-	}
+        if ($(this).prop('step') == '0.01') {
+            $(this).val($(this).prop('max'));
+        }
     });
     recalc();
 }
@@ -163,22 +163,22 @@ function toTime(m) {
     show = false;
 
     if (years != 0) {
-	show = true;
-	str = str + years + "y ";
+        show = true;
+        str = str + years + "y ";
     }
 
     if (days != 0) {
-	show = true;
-	str = str + days + "d ";
+        show = true;
+        str = str + days + "d ";
     }
 
     if (hours != 0) {
-	show = true;
-	str = str + hours + "h ";
+        show = true;
+        str = str + hours + "h ";
     }
 
     if (minutes != 0 || !show) {
-	str = str + minutes + "m";
+        str = str + minutes + "m";
     }
 
     return str;
@@ -239,47 +239,47 @@ function recalc() {
     fatigue = Math.min(fatigue, 60 * 5);
 
     if ($("#distance-1-input").val() == 0) {
-	$("#result-1-fatigue-after").html('<span class="text-muted">N/A</span>');
-	$("#result-1-fatigue-time").html('<span class="text-muted">N/A</span>');
-	$("#result-1-time").html('<span class="text-muted">N/A</span>');
+        $("#result-1-fatigue-after").html('<span class="text-muted">N/A</span>');
+        $("#result-1-fatigue-time").html('<span class="text-muted">N/A</span>');
+        $("#result-1-time").html('<span class="text-muted">N/A</span>');
     } else {
-	$("#result-1-fatigue-after").html(toTime(fatigue));
-	$("#result-1-time").html("0m");
+        $("#result-1-fatigue-after").html(toTime(fatigue));
+        $("#result-1-time").html("0m");
     }
 
     hide = false;
 
     for (var i=2; i < 10; i++) {
-	$("#result-" + i + "-cooldown").html(toTime(cooldown));
-	traveltime += cooldown;
-	fatigue -= cooldown;
+        $("#result-" + i + "-cooldown").html(toTime(cooldown));
+        traveltime += cooldown;
+        fatigue -= cooldown;
 
-	wait = refreshInputTime('#wait-' + i, 0, Math.ceil(fatigue - 10));
-	traveltime += wait;
-	fatigue -= wait;
-	$("#result-" + i + "-fatigue-before").html(toTime(fatigue));
+        wait = refreshInputTime('#wait-' + i, 0, Math.ceil(fatigue - 10));
+        traveltime += wait;
+        fatigue -= wait;
+        $("#result-" + i + "-fatigue-before").html(toTime(fatigue));
 
-	distance = refreshInputDistance('#distance-' + i, 0, maxrange);
-	cooldown = Math.max(fatigue / 10, 1 + distance * (1 - modifier));
-	fatigue = Math.max(fatigue, 10) * (1 + distance * (1 - modifier));
-	fatigue = Math.min(fatigue, 60 * 5);
+        distance = refreshInputDistance('#distance-' + i, 0, maxrange);
+        cooldown = Math.max(fatigue / 10, 1 + distance * (1 - modifier));
+        fatigue = Math.max(fatigue, 10) * (1 + distance * (1 - modifier));
+        fatigue = Math.min(fatigue, 60 * 5);
 
-	if ($("#distance-" + (i - 1) + "-input").val() == 0) {
-	    hide = true;
-	}
+        if ($("#distance-" + (i - 1) + "-input").val() == 0) {
+            hide = true;
+        }
 
-	if (hide) {
-	    $("#row-" + i).addClass('hide');
-	} else {
-	    $("#row-" + i).removeClass('hide');
-	}
+        if (hide) {
+            $("#row-" + i).addClass('hide');
+        } else {
+            $("#row-" + i).removeClass('hide');
+        }
 
-	if ($("#distance-" + i + "-input").val() == 0) {
-	    $("#result-" + i + "-fatigue-after").html('<span class="text-muted">N/A</span>');
-	    $("#result-" + i + "-time").html('<span class="text-muted">N/A</span>');
-	} else {
-	    $("#result-" + i + "-fatigue-after").html(toTime(fatigue));
-	    $("#result-" + i + "-time").html(toTime(traveltime));
-	}
+        if ($("#distance-" + i + "-input").val() == 0) {
+            $("#result-" + i + "-fatigue-after").html('<span class="text-muted">N/A</span>');
+            $("#result-" + i + "-time").html('<span class="text-muted">N/A</span>');
+        } else {
+            $("#result-" + i + "-fatigue-after").html(toTime(fatigue));
+            $("#result-" + i + "-time").html(toTime(traveltime));
+        }
     }
 }
