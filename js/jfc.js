@@ -232,7 +232,6 @@ function recalc() {
 
     traveltime = 0;
     fatigue = getPreFatigue();
-    alert(fatigue);
 
     distance = refreshInputDistance('#distance-1', 0, maxrange);
     cooldown = Math.max(fatigue / 10, 1 + distance * (1 - modifier));
