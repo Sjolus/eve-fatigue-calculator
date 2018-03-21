@@ -74,7 +74,7 @@ function readjust() {
         switch(selectShip) {
             case 1:
                 baserange = 4.0;
-                modifier = 0.5;
+                modifier = 0.75;
                 break;
             case 2:
                 baserange = 5.0;
