@@ -187,8 +187,7 @@ function toTime(m) {
 function getPreFatigue() {
     var h = Number($("#prefatigue-input-h").val());
     var m = Number($("#prefatigue-input-m").val());
-    var sum = h * 60 + m;
-    return Math.max(5, sum);
+    return h * 60 + m;
 }
 
 function refreshInputTime(obj, min, max) {
