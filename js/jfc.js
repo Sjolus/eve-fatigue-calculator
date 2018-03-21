@@ -188,7 +188,7 @@ function getPreFatigue() {
     var h = Number($("#prefatigue-input-h").val());
     var m = Number($("#prefatigue-input-m").val());
     var sum = h * 60 + m;
-    return Math.min(5, sum);
+    return Math.max(5, sum);
 }
 
 function refreshInputTime(obj, min, max) {
@@ -232,6 +232,7 @@ function recalc() {
 
     traveltime = 0;
     fatigue = getPreFatigue();
+    alert(fatigue);
 
     distance = refreshInputDistance('#distance-1', 0, maxrange);
     cooldown = Math.max(fatigue / 10, 1 + distance * (1 - modifier));
