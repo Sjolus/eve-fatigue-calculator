@@ -248,7 +248,7 @@ function recalc() {
 
     hide = false;
 
-    for (var i=2; i < 10; i++) {
+    for (var i=2; i < 13; i++) {
         $("#result-" + i + "-cooldown").html(toTime(cooldown));
         traveltime += cooldown;
         fatigue -= cooldown;
