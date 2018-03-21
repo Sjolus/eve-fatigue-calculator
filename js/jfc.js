@@ -188,7 +188,7 @@ function getPreFatigue() {
     var h = Number($("#prefatigue-input-h").val());
     var m = Number($("#prefatigue-input-m").val());
     var sum = h * 60 + m;
-    return Math.min(720, sum);
+    return Math.min(5, sum);
 }
 
 function refreshInputTime(obj, min, max) {
@@ -236,7 +236,7 @@ function recalc() {
     distance = refreshInputDistance('#distance-1', 0, maxrange);
     cooldown = Math.max(fatigue / 10, 1 + distance * (1 - modifier));
     fatigue = Math.max(fatigue, 10) * (1 + distance * (1 - modifier));
-    fatigue = Math.min(fatigue, 60 * 24 * 5);
+    fatigue = Math.min(fatigue, 60 * 5);
 
     if ($("#distance-1-input").val() == 0) {
 	$("#result-1-fatigue-after").html('<span class="text-muted">N/A</span>');
@@ -262,7 +262,7 @@ function recalc() {
 	distance = refreshInputDistance('#distance-' + i, 0, maxrange);
 	cooldown = Math.max(fatigue / 10, 1 + distance * (1 - modifier));
 	fatigue = Math.max(fatigue, 10) * (1 + distance * (1 - modifier));
-	fatigue = Math.min(fatigue, 60 * 24 * 5);
+	fatigue = Math.min(fatigue, 60 * 5);
 
 	if ($("#distance-" + (i - 1) + "-input").val() == 0) {
 	    hide = true;
