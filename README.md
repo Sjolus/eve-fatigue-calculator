@@ -1,7 +1,7 @@
 narcolepsy
 ==========
 
-http://oaao.github.io/narcolepsy
+https://oaao.github.io/narcolepsy
 
 Updated version of [Jump Fatigue Calculator](https://github.com/kiu/jump-fatigue-calculator) originally created by player "kiu Nakamura".
 
