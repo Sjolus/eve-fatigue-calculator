@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <meta name="description" content="narcolepsy">
-    <meta name="author" content="kiu Nakamura, oaao">
+    <meta name="author" content="kiu Nakamura, oaao, Sjolus">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="icon" href="favicon.png">
@@ -25,7 +25,7 @@
 		<span class="icon-bar"></span>
 		<span class="icon-bar"></span>
             </button>
-	    <a class="navbar-brand" href="/"><b>narcolepsy</b></a>
+	    <a class="navbar-brand" href="/"><b>Eve Fatigue Calculator</b></a>
         </div>
 	<div class="navbar-collapse collapse navbar-inverse-collapse">
 	    <ul class="nav navbar-nav">
@@ -47,33 +47,33 @@
 
 	<span id="option-travel" style="font-size:140%;">
 	    <label>travel via: </label>
-	    <button id="option-travel-2" class="btn btn-default btn-sm" onclick="selectTravel = 2; readjust();"><b>cyno</b></button>
-	    <button id="option-travel-3" class="btn btn-default btn-sm" onclick="selectTravel = 3; readjust();"><b>titan bridge</b></button>
+	    <button id="option-travel-2" class="btn btn-default btn-sm" onclick="selectTravel = 2; readjust();"><b>Cyno</b></button>
+	    <button id="option-travel-3" class="btn btn-default btn-sm" onclick="selectTravel = 3; readjust();"><b>Titan bridge</b></button>
 	    <button id="option-travel-1" class="btn btn-default btn-sm" onclick="selectTravel = 1; readjust();"><b>JB</b></button>
-	    <button id="option-travel-4" class="btn btn-default btn-sm" onclick="selectTravel = 4; readjust();"><b>covcyno | blops bridge</b></button>
+	    <button id="option-travel-4" class="btn btn-default btn-sm" onclick="selectTravel = 4; readjust();"><b>Covert Cyno | Blops bridge</b></button>
 	</span>
 
 <br>
 
 	<span id="option-ship-covert" style="font-size:140%;" class="hide">
 	    <label>ship type:</label>
-	    <button id="option-ship-covert-1" class="btn btn-default btn-sm" onclick="selectShipCovert = 1; readjust();"><b>blops | covops | force recon</b></button>
-	    <button id="option-ship-covert-2" class="btn btn-default btn-sm" onclick="selectShipCovert = 2; readjust();"><b>blockade runner</b></button>
+	    <button id="option-ship-covert-1" class="btn btn-default btn-sm" onclick="selectShipCovert = 1; readjust();"><b>Blops | Covops | Force Recon</b></button>
+	    <button id="option-ship-covert-2" class="btn btn-default btn-sm" onclick="selectShipCovert = 2; readjust();"><b>Blockade Runner</b></button>
 	</span>
 
 	<span id="option-ship-bridged" style="font-size:140%;" class="hide">
 	    <label>ship type: </label>
-	    <button id="option-ship-bridged-1" class="btn btn-default btn-sm" onclick="selectShip = 1; readjust();"><b>blops | covops | force recon</b></button>
-	    <button id="option-ship-bridged-2" class="btn btn-default btn-sm" onclick="selectShip = 2; readjust();"><b>pod | shuttle | industrial (T1, T2, rorq, freighter, JF)</b></button>
-	    <button id="option-ship-bridged-3" class="btn btn-default btn-sm" onclick="selectShip = 3; readjust();"><b>everything else</b></button>
+	    <button id="option-ship-bridged-1" class="btn btn-default btn-sm" onclick="selectShip = 1; readjust();"><b>Blops | Covops | Force Recon</b></button>
+	    <button id="option-ship-bridged-2" class="btn btn-default btn-sm" onclick="selectShip = 2; readjust();"><b>Pod | Shuttle | Industrial (T1, T2, Rorq, Freighter, JF)</b></button>
+	    <button id="option-ship-bridged-3" class="btn btn-default btn-sm" onclick="selectShip = 3; readjust();"><b>Everything else</b></button>
 	</span>
 
 	<span id="option-ship" style="font-size:140%;" class="hide">
 	    <label>ship type: </label>
-	    <button id="option-ship-1" class="btn btn-default btn-sm" onclick="selectShip = 1; readjust();"><b>blops</b></button>
-	    <button id="option-ship-2" class="btn btn-default btn-sm" onclick="selectShip = 2; readjust();"><b>JF | rorq</b></button>
-	    <button id="option-ship-3" class="btn btn-default btn-sm" onclick="selectShip = 3; readjust();"><b>carrier | FAX | dread</b></button>
-	    <button id="option-ship-4" class="btn btn-default btn-sm" onclick="selectShip = 4; readjust();"><b>super | titan</b></button>
+	    <button id="option-ship-1" class="btn btn-default btn-sm" onclick="selectShip = 1; readjust();"><b>Blops</b></button>
+	    <button id="option-ship-2" class="btn btn-default btn-sm" onclick="selectShip = 2; readjust();"><b>JF | Rorq</b></button>
+	    <button id="option-ship-3" class="btn btn-default btn-sm" onclick="selectShip = 3; readjust();"><b>Carrier | FAX | Dread</b></button>
+	    <button id="option-ship-4" class="btn btn-default btn-sm" onclick="selectShip = 4; readjust();"><b>Super | Titan</b></button>
 	</span>
 
 <br>
@@ -380,12 +380,13 @@
 		Based on original mechanics introduced in the <a href="http://community.eveonline.com/news/dev-blogs/phoebe-travel-change-update/">Phoebe expansion</a> released 30.10.2014 17:19
 		<p>
 		Updated with new jump ranges established in <a href="https://forums-archive.eveonline.com/topic/495521/">Ascension</a>, and fatigue mechanics established in the <a href="https://www.eveonline.com/article/p4ia05/sovereignty-warfare-and-jump-fatigue-changes-coming-in-the-march-release">"March release"</a> implemented 20.03.2018
-
 	</div>
 	<div style="font-size:70%; position:fixed; bottom:1px; right:5px; z-index:23;">
 		Rewritten for current mechanics by <a href="https://github.com/oaao">oaao</a>
 		<p>
-		Originally created by <a href="http://www.nakamura-labs.com">kiu Nakamura</a> / <a href="http://evewho.com/alli/Brave+Collective">Brave Collective</a>
+		Originally created by <a href="https://www.nakamura-labs.com">kiu Nakamura</a> / <a href="https://evewho.com/alliance/99003214">Brave Collective</a>
+        <p>
+        Containerized by <a href="https://evewho.com/character/1123426217">Sjolus</a> / <a href="https://evewho.com/corporation/98148549">Capital Fusion</a>
 	</div>
 
     <script src="js/jquery-1.10.2.min.js"></script>
